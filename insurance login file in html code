@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>PHP Connection</title>
+</head>
+<body>
+<?php
+	if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$database = "ganesh123";
+		
+		$user = $_POST['user'];
+		$pass = $_POST['pass'];
+
+		$con = mysqli_connect($servername,$username,$password,$database);
+
+		$sql ="INSERT INTO `login` (`user`, `pass`) VALUES ('$user ', '$pass')";
+
+		$result = mysqli_query($con,$sql);
+
+		if($result)
+			echo "Succesfully inserted";
+		else
+			echo "Not successfully inserted";
+
+        }
+
+?>
+
+<form action = "/project/insurance.php"  method = "POST">
+Username: <input type = "text" name = "user" id = "user"><br><br>
+Password : <input type = "text" name = "pass" id = "pass"><br><br>
+<input type = "submit" name = "submit" id="submit" />
+
+</form>
+</body>
+</html>
